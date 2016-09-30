@@ -17,7 +17,10 @@
         audioRouteOverride = kAudioSessionProperty_OverrideCategoryDefaultToSpeaker;
         AudioSessionSetProperty(kAudioSessionProperty_OverrideAudioRoute, sizeof(audioRouteOverride), &audioRouteOverride);
     } else if ([mode isEqualToString:@"speaker"] || [mode isEqualToString:@"ringtone"]) {
-        [session setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker error:&err];
+      //  [session setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker error:&err];
+    	[session setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker error:&err];
+        audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
+        AudioSessionSetProperty(kAudioSessionProperty_OverrideAudioRoute, sizeof(audioRouteOverride), &audioRouteOverride);
     } else if ([mode isEqualToString:@"normal"]) {
         [session setCategory:AVAudioSessionCategorySoloAmbient error:&err];
     }
